@@ -8,6 +8,7 @@ catalog: true
 tags:  Python                     
 ---
 
+
 ## 前言
 
 本文首先对Unicode与UTF-8的区别做一个解释，如果已了解，可跳过该部分。然后会分别对python2，3中的str、unicode进行讲解。有问题的地方，欢迎交流。

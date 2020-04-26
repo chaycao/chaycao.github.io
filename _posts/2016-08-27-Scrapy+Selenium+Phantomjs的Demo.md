@@ -8,6 +8,7 @@ catalog: true
 tags:  Python                            
 ---
 
+
 　　前段时间学习了用Python写爬虫，使用Scrapy框架爬取京东的商品信息。商品详情页的价格是由js生成的，而通过Scrapy直接爬取的源文件中无价格信息。
 　　通过Selenium、Phantomjs便能实现。下面先介绍Phantomjs。
 ### Phantomjs

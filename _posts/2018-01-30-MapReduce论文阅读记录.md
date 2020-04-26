@@ -8,6 +8,7 @@ catalog: true
 tags:  MapReduce
 ---
 
+
 本文为阅读MapReduce论文的记录，内容主要是论文的第三部分——实现。方便本人今后查看。
 
 ## 1. 运行概述

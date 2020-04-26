@@ -8,6 +8,7 @@ catalog: true
 tags:  随笔                            
 ---
 
+
 　　今天创建了自己的博客chaycao.github.io，写下这第一篇博文，取其名为**“Hello World”**。
 
 　　“Hello World”，中文译为“你好 世界”。世界上的第一个程序就是Hello World，由Brian Kernighan创作。HelloWorld程序也常用于让新手去接触一种编程语言。
