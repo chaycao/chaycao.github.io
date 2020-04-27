@@ -14,13 +14,13 @@ tags:  MySQL
 如果对 Isolation Levels 记忆模糊可以参考这一篇：[复习资料库的 Isolation Level 与图解五个常见的 Race Conditions](https://medium.com/@chester.yw.chu/複習資料庫的-isolation-level-與常見的五個-race-conditions-圖解-16e8d472a25c?postPublishedType=repub)
 
 一开始我们先看一个例子。有两个 Transaction 同时操作 gamer 这个表格，其中一个 select 所有的数据，另一个则在中间新增了一个新的玩家，Frank，然后 commit。在 MySQL InnoDB Engine 的环境下，使用 Repeatable Read Isolation (RR Isolation) 时，数据库的行为如下图：
-![幻读不会发生](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\RR-读模式.png)
+![幻读不会发生](https://i2.tiimg.com/717558/5026ea63f61bbf8f.png)
 
 从上图可以看到，在 Transaction B 新增了一条数据之后，Transaction A 还是只读取到 5 条数据，没有玩家 Frank 的数据，Phantom 现象并没有发生。所以大家可能会问，MySQL InnoDB Engine 的 RR Isolation 是不是 Phantom Safe 的呢？网络上的确也有不少文章是这么认为的。
 但是让我们继续这个例子。 Transaction A 的任务是在每周的最后一天为当下分数最高的前三名玩家增加 credit，前三名玩家的 credit 都各增加 1 分。依照上图可以知道现在前三名的玩家分别是Alice、Carol 跟Bob，三个玩家的分数都达到了740 分以上，所以可以很简单的使用Atomic Update (credit = credit + 1)，为所有分数达到740 分以上的玩家credit 加1。
 虽然目前数据库实际上有 6 条玩家的数据，但是从 Transaction A 的视角只有看到总共 5 条玩家的数据。在这样的情况下，Transaction A 所做的更新是不是理论上只会影响到这 5 条数据呢？实际的实验结果如下图：
 
-![幻读导致写倾斜](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\RR-读写.png)
+![幻读导致写倾斜](https://i2.tiimg.com/717558/bfe110a7f8497612.png)
 
 从上图中可以看到，在 Transaction A 执行更新命令后，如果马上再重新读取一次 gamer 表格，玩家 Frank 的数据竟然意外的出现在列表中，发生了 Phantom 现象。不仅如此，照原本的逻辑 Transaction A 应该只会为前 3 名的玩家增加 credit，但是因为 Frank 的分数也同样高于 740 分，同样也被增加了 credit。最后被增加 credit 的玩家总共有 4 个 ，比原本系统预计送出的 credit 还多。这种现象属于 Write Skew，在这个例子中是因为 Phamtom 而导致的 Write Skew。
 
@@ -68,11 +68,11 @@ COMMIT;
 
 在 WIKI Isolation Level 的页面上有下面这一张表：
 
-![隔离级别vs幻读](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\隔离级别vs幻读.png)
+![隔离级别vs幻读](https://i2.tiimg.com/717558/92a6b5ffc83a2ce3.png)
 
 根据这张表，Repeatable Read Isolation 是可以避免 Lost Update 现象的。但是实际在 MySQL 上测试，如下图中的 Lost Update 例子却成功了：
 
-![更新丢失](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\更新丢失.png)
+![更新丢失](https://i2.tiimg.com/717558/afd9cdd112f3d680.png)
 
 在这个例子中，两个 Transaction 同时进行卖出 Item A 的操作，一个卖出 4 个，一个卖出 1 个。理论上，库存记录应该从原本的 10 个减少为 5 个才对。但是最后库存的记录却是 quantity = 9，Transaction A 的更新被 Transaction B 的覆盖掉了，这就是 Lost Update 现象。 Lost Update 现象通常都发生在像这种对数据库做 read-modify-write 的操作。有的数据库会实现 Lost Update 的自动侦测机制来避免这种错误，像是 PostgreSQL 的 RR Isolation。但是 MySQL 则没有，所以 Lost Update 现象是有可能在 MySQL 的 RR Isolation 发生的。
 
@@ -97,7 +97,7 @@ COMMIT;
 
 原本 WIKI 给的表格应该改成如下：
 
-![正确的隔离级别](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\正确的隔离级别.png)
+![正确的隔离级别](https://i2.tiimg.com/717558/effce7723e80faed.png)
 
 Repeatable Read Isolation 只保证不会出现 Non-repeatable Read 现象，并不保证不会出现 Lost Update，依照每个数据库对 RR Isolation 的实现方法不同，有的数据库能避免 Lost Update 现象，有的数据库则不能。还有一些例外像 PostgreSQL 的 RR Isolation 还可以避免 Phantom。
 
@@ -106,11 +106,11 @@ Lost Update 和 Write Skew 等现象是在 SQL Standard 之后才被发表的，
 
 MySQL：
 
-![MySQL隔离级别](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\MySQL隔离级别.png)
+![MySQL隔离级别](https://i2.tiimg.com/717558/717ea75861d3a66f.png)
 
 PostgreSQL：
 
-![PostgreSQL隔离级别](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\PostgreSQL隔离级别.png)
+![PostgreSQL隔离级别](https://i2.tiimg.com/717558/cbedf3d93c4cd7e3.png)
 
 ## 误区3：MySQL Range Locks on Indexed and Non-indexed Column
 
@@ -122,13 +122,13 @@ SELECT * FROM student WHERE height >= 170 FOR UPDATE;
 
 在 MySQL RR Isolation Level 中，SELECT 命令并不会对数据做任何的 Lock，除非额外加上 Shared Lock 或 Exclusive Lock 命令。像在上面的例子使用 FOR UPDATE 命令，就会对所有 SELECT 出来的数据加 Exclusive Lock。对数据加 Shared Lock 或 Exclusive Lock 之后，MySQL 还会另外加 Range Lock。以上面的例子来说，会对 height 这个字段上 Range Lock，Lock 的范围是 170 到无限大，不允许其他 Transaction 新增任何 height 的值介于这个范围内的数据，如下图：
 
-![range lock](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\range lock.png)
+![range lock](https://i2.tiimg.com/717558/b4331509b906a5e1.png)
 
 在上图中，Transaction B 可以很顺利的新增一条 height = 160 的数据，但是想要新增另外一条 height = 180 的数据时，会被 Transaction A 的 Range Lock Block 住，要等到 Transaction A Commit 后才能执行。这个机制的好处是可以只 Lock 所有跟 Transaction A 有关的『数据 Range』，而不是 Lock 整张 Table ，减少对性能的影响。要特别注意的是在 MySQL RR Isolation，如果没有额外加上 Shared Lock 或是 Exclusive Lock 命令，Range Lock 就不会生效。
 
 现在我们改看 weight 这个字段。与 height 字段的差别是，weight 字段并没有做 index，如果对 weight 字段做一样的操作时，结果如下图：
 
-![没index的字段-观察rang lock](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\没index的字段-观察rang lock.png)
+![没index的字段-观察rang lock](https://i2.tiimg.com/717558/bad39876da56a7de.png)
 
 在上图中，Transaction B 想要新增一条 weight = 50 的数据。虽然 50 并不在 Range Lock 的范围 (58 到无限大)，却还是被 Block 住了。这是因为 MySQL 的Range Lock 其实是 Index-record Lock，当 weight 字段没有做 Index 时，就没有该字段的 Index Record 可以做 Lock，为了继续维持 Transaction 之间的Isolation，MySQL 就只好 Lock 整张 student 表格。所以其实不只是无法新增 weight = 50 的数据，在 Transaction A Commit 前，任何对 student 表的新增跟修改都是不允许的。如果没有特别注意，很容易在不知情的情况下造成 Full Table Lock，大大的影响性能。
 
@@ -140,7 +140,7 @@ SELECT * FROM student WHERE height >= 170 FOR UPDATE;
 
 这是 Designing Data-Intensive Applications 这本书里面对 Repeatable Read Isolation 的注解。其他三个 Isolation Level 我们都可以很清楚的知道它们分别避免哪些 Race Conditions，但是 Repeatable Read Isolation 的行为则依照每个数据库的实现而有所不同。需要靠使用者自己去阅读文档或是了解数据库背后的实现方法，才能够判别。让我们再复习一次这张表格：
 
-![正确的隔离级别](F:\博客\20200424-关于 MySQL Repeatable Read Isolation 常见的三个误区\正确的隔离级别.png)
+![正确的隔离级别](https://i2.tiimg.com/717558/717ea75861d3a66f.png)
 
 ## 参考
 
