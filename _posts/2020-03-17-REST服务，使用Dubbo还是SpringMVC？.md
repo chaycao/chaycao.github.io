@@ -91,5 +91,3 @@ public class DubboService {
 2. [Difference between JAX-RS and Spring Rest](https://stackoverflow.com/questions/42944777/difference-between-jax-rs-and-spring-rest)
 
 
-
-![公众号二维码](https://i2.tiimg.com/717558/a410997819862ca9.png)

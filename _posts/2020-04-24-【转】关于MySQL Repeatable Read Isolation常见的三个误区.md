@@ -1,5 +1,5 @@
 ---
-layout:     post
+layout:     reprint
 title:      【转】关于 MySQL Repeatable Read Isolation 常见的三个误区
 date:       2020-04-24
 author:     ChayCao

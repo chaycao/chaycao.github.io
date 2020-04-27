@@ -234,4 +234,3 @@ Optional.of(new Outer())
 2. [如何在 Java8 中风骚走位避开空指针异常](<https://juejin.im/post/5c41d8ae6fb9a049a42f575b#comment>)
 
 
-![公众号二维码](http://i2.tiimg.com/717558/a410997819862ca9.png)

@@ -140,4 +140,3 @@ Redis 的数据一致性不如 ZooKeeper，而 ZooKeeper 对高并发的支持�
 2. [为什么需要ZooKeeper](https://zhuanlan.zhihu.com/p/69114539)
 
 
-![公众号二维码](http://i2.tiimg.com/717558/a410997819862ca9.png)

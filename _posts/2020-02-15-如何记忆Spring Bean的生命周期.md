@@ -304,5 +304,3 @@ DisposableBean 和 destory-method 与上述类似，就不描述了。
 ## 5. 参考
 1. [请别再问Spring Bean的生命周期了！](https://www.jianshu.com/p/1dec08d290c1)
 2. [聊聊spring的那些扩展机制](https://juejin.im/post/5ba45a94f265da0aa94a0d71)
-
-![公众号二维码](http://i2.tiimg.com/717558/a410997819862ca9.png)
