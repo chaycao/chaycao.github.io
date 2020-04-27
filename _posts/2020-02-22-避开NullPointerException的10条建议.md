@@ -235,3 +235,7 @@ Optional.of(new Outer())
 
 
 ![公众号二维码](http://i2.tiimg.com/717558/a410997819862ca9.png)
+
+<img src='https://i1.fuimg.com/717558/defe8abe0402ca24.png' align='left' />
+
+本作品采用[知识共享署名 4.0 国际许可协议](http://creativecommons.org/licenses/by/4.0/)进行许可，转载时请注明原文链接，图片在使用时请保留全部内容，可适当缩放并在引用处附上图片所在的文章链接。
