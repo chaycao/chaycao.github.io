@@ -106,3 +106,9 @@ service-worker: true
 #        href: "https://developer.apple.com/"
 #    }
 #]
+
+# gittalk配置
+comment_gitalk_clientId: fbeeb10c180b47dc0ae5
+comment_gitalk_clientSecret: ebf7fa24d27cd912f81c422f718c8a44b8cd5b14
+comment_gitalk_repo: chaycao.github.io
+github_username: chaycao
