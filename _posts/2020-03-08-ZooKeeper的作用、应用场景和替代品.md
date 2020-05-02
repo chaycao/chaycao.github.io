@@ -29,7 +29,7 @@ ZooKeeper 也是通过集群的方式解决单点问题。看似通过集群的�
 
 对于简单的无状态的单点问题，通过集群的方式便能解决，例如，代理节点做消息转发，这就是无状态的情况，如下图所示：
 
-![无状态的单点问题](https://user-gold-cdn.xitu.io/2020/3/8/170ba0bb63a8259f?w=1080&h=1460&f=webp&s=28740)
+![无状态的单点问题](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E6%97%A0%E7%8A%B6%E6%80%81%E7%9A%84%E5%8D%95%E7%82%B9%E9%97%AE%E9%A2%98.png)
 
 如果消息转发服务器 X 宕机了，还有服务器 Y 能继续正常工作，而且机器数量越多可用性越高。
 
@@ -38,7 +38,7 @@ ZooKeeper 也是通过集群的方式解决单点问题。看似通过集群的�
 1. 去状态：将问题去除为无状态，例如将状态存储到可靠的DB中；
 2. 主从：由 Master 做主要的数据处理，Slaver 同步 Master 的状态，例如 MySQL 的主从复制，Master 处理写操作，Slaver 通过 binlog 同步状态。
 
-![有状态的单点问题](https://user-gold-cdn.xitu.io/2020/3/8/170ba0c0ee445f05?w=1080&h=1311&f=webp&s=30446)
+![有状态的单点问题](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E6%9C%89%E7%8A%B6%E6%80%81%E7%9A%84%E5%8D%95%E7%82%B9%E9%97%AE%E9%A2%98.png)
 
 上述简单介绍了 MySQL 的解决方法，而 ZooKeeper 是使用的 ZAB 协议实现一致性。关于分布式一致性问题，本文将不继续叙述了，大家就先记住 **ZooKeeper 解决了单点问题，能保证一致性**，不用担心 ZooKeeper 集群会因为有机器宕机导致数据不一致性问题。
 
@@ -48,7 +48,7 @@ ZooKeeper 也是通过集群的方式解决单点问题。看似通过集群的�
 
 分布式协调，其含义正如它的字面意思，在分布式环境下进行协调。举个例子，在单机情况下，若多个线程同时想对某个资源进行修改，例如库存减一。为了保证正确性，我们会在这个资源上加锁。但是在分布式情况下，若多台机器想对某个资源进行修改，我们如何为这个资源加锁呢？这时候就需要一个**协调者**的出现。机器若想知道其他机器有没有加锁，不需要去和其他机器通信，只需和协调者通信就可以知道资源的加锁情况了，也可以认为锁由协调者进行管理。
 
-![分布式协调](https://user-gold-cdn.xitu.io/2020/3/8/170ba0c4353be179?w=1080&h=1251&f=webp&s=12968)
+![分布式协调](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8D%8F%E8%B0%83.png)
 
 你可能会说为什么要让 ZooKeeper 担任协调者， 为什么不直接在集群里选一台机器。是的，当然可以，但是这样的话你就需要解决协调者的单点问题（担任协调者的机器宕机）。又因为分布式系统中大多都需要这么一个协调者组件，而为了复用，将其抽离出来，于是就有了**分布式协调系统**。因此 Dubbo、Kafak 等框架在实现分布式时，直接把 ZooKeeper 拿来用，这样就不用再重复实现协调者组件了。而程序员的我们在分布式开发中也只需要关注业务逻辑实现即可。
 
@@ -62,7 +62,7 @@ ZooKeeper 也是通过集群的方式解决单点问题。看似通过集群的�
 
 什么是数据模型，可以理解为数据的存放形式，例如 Redis 是以键值对的形式存储数据，而 ZooKeeper 是树的形式，如下图所示：
 
-![ZooKeeper数据模型](https://user-gold-cdn.xitu.io/2020/3/8/170ba0c729d6de8a?w=1080&h=970&f=webp&s=12080)
+![ZooKeeper数据模型](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/ZooKeeper%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B.png)
 
 其中根节点的名字是 “/”，根节点有两个子节点 “A” 和 “B”，“A” 又有三个子节点 “X”、“Y”、“Z”。我们可以根据需要组织树的节点，还可以在节点上存储数据，是不是有点像文件系统的感觉。
 
@@ -81,13 +81,13 @@ ZooKeeper 也是通过集群的方式解决单点问题。看似通过集群的�
 
 通过 **Watcher机制** 实现数据发布/订阅。以配置中心场景为例。将配置发布到 ZooKeeper 的节点上，其他机器可通过监听 ZooKeeper 上节点的变化来实现配置的动态更新。例如我们把数据库配置放在 “/configserver/app1/database_config” 节点上，然后让每台机器在启动时从该节点上获取数据库配置信息，并且监听节点的内容变化，发生配置变更时，重新获取配置。
 
-![配置管理](https://user-gold-cdn.xitu.io/2020/3/8/170ba0cb42e535ab?w=1080&h=462&f=webp&s=7046)
+![配置管理](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E9%85%8D%E7%BD%AE%E7%AE%A1%E7%90%86%E7%9A%84%E8%8A%82%E7%82%B9%E5%9B%BE.png)
 
 ### 2.3 命名服务
 
 通过 ZooKeeper 的**顺序节点**生成全局唯一 ID。例如一个分布式任务调度系统，为任务生产全局唯一 ID，如下图所示：
 
-![命名服务](https://user-gold-cdn.xitu.io/2020/3/8/170ba0d03fb1cfd9?w=1080&h=1263&f=webp&s=15102)
+![命名服务](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E5%91%BD%E5%90%8D%E6%9C%8D%E5%8A%A1.png)
 
 在创建完顺序节点后，通过节点名拼接可得到唯一 ID 的任务名，例如 “type1-job-000000003”。
 
@@ -95,7 +95,7 @@ ZooKeeper 也是通过集群的方式解决单点问题。看似通过集群的�
 
 通过 ZooKeeper 的**临时节点** 和 **Watcher 机制**，来监控集群的运行状态，如下图所示：
 
-![集群管理](https://user-gold-cdn.xitu.io/2020/3/8/170ba0d989a7eaa2?w=1080&h=1401&f=webp&s=15820)
+![集群管理](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E9%9B%86%E7%BE%A4%E7%AE%A1%E7%90%86.png)
 
 当有新的机器加入集群时，就在 “machines” 下创建一个临时节点。当有机器宕机时，临时节点将失效被删除。通过监控 “machines” 下的子节点变化，就能得知集群机器的状态。
 
@@ -105,13 +105,13 @@ ZooKeeper 也是通过集群的方式解决单点问题。看似通过集群的�
 
 排它锁，在事务对资源的加锁期间，不允许其他事务进行读写操作。通过一个**临时节点**便能表示一个锁，如下图所示：
 
-![排它锁](https://user-gold-cdn.xitu.io/2020/3/8/170ba0de9ab6704c?w=1080&h=537&f=webp&s=8640)
+![排它锁](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E6%8E%92%E5%AE%83%E9%94%81.png)
 
 在 “resourceA\exclusive_lock” 节点下建立一个 “lock” 节点表示对资源A上了排它锁。当多台机器尝试在 “exclusive_lock” 下创建 “lock” 节点时，只会有一台能成功创建，而其他失败的机器将监听 “exclusive_lock” 的子节点变化。当锁被主动释放时或者宕机时，“lock” 节点将被删除，其他机器将被通知，继续尝试创建 “lock” 节点获取锁。
 
 共享锁，在事务对资源的加锁期间，允许其他事务进行读操作。仍然是通过一个节点来代表锁，不同的地方在于需要区分下读写操作，读写可以通过节点的数据内容来表示，例如 R 表示读操作，W 表示写操作。如下图所示：
 
-![共享锁](https://user-gold-cdn.xitu.io/2020/3/8/170ba0e23740f7f7?w=1080&h=621&f=webp&s=15152)
+![共享锁](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-03-08-ZooKeeper%E7%9A%84%E4%BD%9C%E7%94%A8%E3%80%81%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%E5%92%8C%E6%9B%BF%E4%BB%A3%E5%93%81/%E5%85%B1%E4%BA%AB%E9%94%81.png)
 
 读写操作都是在 “shared_lock” 节点下创建一个名为 “lock” 的**临时顺序节点**，只是数据内容不同。对于读操作，如果比自己序号小的子节点都是读请求，则认为自己成功获得了锁，可以进行读操作，如果序号小的节点中包含写操作，需要进行等待，监听 “shared_lock” 的子节点变化。对于写操作，如果自己不是序号最小的子节点，则进入等待，监听 “shared_lock” 的子节点变化。
 

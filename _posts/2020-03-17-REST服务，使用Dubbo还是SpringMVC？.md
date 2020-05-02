@@ -73,7 +73,7 @@ public class DubboService {
 ，即服务提供端和消费端都是基于 Dubbo 的系统。
 6. **一定程度简化 Dubbo 系统对其它异构系统的调用**。可以用类似 Dubbo 的简便方式“透明”的调用非 Dubbo 系统提供的 REST 服务（不管服务提供端是在企业内部还是外部）。就是第 1 点的升级版。
 
-![Dubbo RESTful Remoting应用蓝图](https://user-gold-cdn.xitu.io/2020/3/17/170e8769a42a610f?w=720&h=540&f=jpeg&s=206610)
+![Dubbo RESTful Remoting应用蓝图](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020-03-17-REST%E6%9C%8D%E5%8A%A1%EF%BC%8C%E4%BD%BF%E7%94%A8Dubbo%E8%BF%98%E6%98%AFSpringMVC%EF%BC%9F/Dubbo%20RESTful%20Remoting%E5%BA%94%E7%94%A8%E8%93%9D%E5%9B%BE.jpg)\
 
 其中的 1、2、3 点被认为是 Dubbo 的 REST 服务最有价值的三种应用场景，提供 REST 服务来提供给非 Dubbo 的（异构）消费端。
 

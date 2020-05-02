@@ -15,7 +15,7 @@ tags:  Spring
 
 我之前在准备面试时，去网上搜过答案，大多以下图给出的流程作为答案。
 
-![Spring的生命周期](https://user-gold-cdn.xitu.io/2020/2/15/170485f55560d36e?w=3838&h=2463&f=png&s=262205)
+![Spring的生命周期](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-02-14-%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BF%86Spring%20Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/Spring%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F.png)
 
 但是当我第一次看到该图时，就产生了很多困扰，“Aware，BeanPostProcessor......这些都是什么啊？而且这么多步骤，太多了，该怎么记啊？”。
 
@@ -35,7 +35,7 @@ Bean 的生命周期概括起来就是 **4 个阶段**：
 3. 初始化（Initialization）
 4. 销毁（Destruction）
 
-![](https://user-gold-cdn.xitu.io/2020/2/15/1704860a4de235aa?w=5969&h=2563&f=png&s=389768)
+![Spring生命周期(概要)](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-02-14-%E5%A6%82%E4%BD%95%E8%AE%B0%E5%BF%86Spring%20Bean%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/Spring%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%EF%BC%88%E6%A6%82%E8%A6%81%EF%BC%89.png)
 
 1. 实例化：第 1 步，实例化一个 bean 对象；
 

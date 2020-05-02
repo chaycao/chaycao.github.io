@@ -15,7 +15,7 @@ tags:  MapReduce
 
 下图展示了 MapReduce 过程的整体情况
 
-![这里写图片描述](http://upload-images.jianshu.io/upload_images/2489662-b81e0c68bb18c98e?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![MapReduce过程](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2018/MapReduce%E8%BF%87%E7%A8%8B.png)
 
 当用户程序执行 MapReduce 时，会依次发生以下动作（对应图中的标号）：
 
