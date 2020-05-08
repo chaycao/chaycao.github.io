@@ -610,11 +610,11 @@ weaver.addAdvice(afterAdvice);
 ITask proxyObject = (ITask) weaver.getProxy();
 proxyObject.execute();
 
-/** output
-准备资源
-开始执行任务
-任务完成
-资源清理
+/** output   
+准备资源    
+开始执行任务     
+任务完成    
+资源清理   
 **/
 ```
 
