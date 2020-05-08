@@ -77,7 +77,7 @@ Jointpoint 的表述方式。
 
 将上述 6 个概念放在一块，如下图所示：
 
-![AOP各个概念所处的场景](F:\博客\2020-05-06-AOP\AOP各个概念所处的场景.PNG)
+![AOP各个概念所处的场景](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-05-08-Spring%E6%BA%90%E7%A0%81%E2%80%94AOP%E6%A6%82%E5%BF%B5%E7%9A%84%E5%AE%9E%E7%8E%B0/AOP%E5%90%84%E4%B8%AA%E6%A6%82%E5%BF%B5%E6%89%80%E5%A4%84%E7%9A%84%E5%9C%BA%E6%99%AF.png)
 
 在了解 AOP 的各种概念后，下面将介绍 Spring 中 AOP 概念的具体实现。
 
@@ -117,7 +117,7 @@ public interface ClassFilter {
 	// 匹配被织入的类，匹配成功返回true，失败返回false
 	boolean matches(Class<?> clazz);
 
-	// TrueClassFilter的单例对象，默认匹配所有类
+    // TrueClassFilter的单例对象，默认匹配所有类
 	ClassFilter TRUE = TrueClassFilter.INSTANCE;
 }
 ```
@@ -160,7 +160,7 @@ public boolean matches(Method method, Class<?> targetClass) {
 
 `Pointcut` 也因 `MethodMathcer` 可分为 **`StaticMethodMatcherPointcut`** 和 **`DynamicMethodMatcherPointcut`**，相关类图如下所示：
 
-![Pointcut相关类图](F:\博客\2020-05-06-AOP\Pointcut相关类图.png)
+![Pointcut相关类图](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-05-08-Spring%E6%BA%90%E7%A0%81%E2%80%94AOP%E6%A6%82%E5%BF%B5%E7%9A%84%E5%AE%9E%E7%8E%B0/Pointcut%E7%9B%B8%E5%85%B3%E7%B1%BB%E5%9B%BE.png)
 
 `DynamicMethodMatcherPointcut` 本文将不介绍，主要介绍下类图中列出的三个实现类。
 
@@ -174,7 +174,7 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 	// 方法名称
 	private List<String> mappedNames = new ArrayList<>();
 
-    // 设置方法名称
+	// 设置方法名称
 	public void setMappedNames(String... mappedNames) {
 		this.mappedNames = new ArrayList<>(Arrays.asList(mappedNames));
 	}
@@ -191,7 +191,7 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 		return false;
 	}
     
-    // ...
+	// ...
 }
 ```
 
@@ -207,7 +207,7 @@ public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut impleme
 
 Advice 为横切逻辑的载体，Spring AOP 中关于 Advice 的接口类图如下所示：
 
-![Advice相关类图](F:\博客\2020-05-06-AOP\Advice相关类图.png)
+![Advice相关类图](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-05-08-Spring%E6%BA%90%E7%A0%81%E2%80%94AOP%E6%A6%82%E5%BF%B5%E7%9A%84%E5%AE%9E%E7%8E%B0/Advice%E7%9B%B8%E5%85%B3%E7%B1%BB%E5%9B%BE.png)
 
 **（1）MethodBeforeAdvice**
 
@@ -331,7 +331,7 @@ public class MockTask implements ITask {
 		System.out.println("开始执行任务");
         // 抛出一个自定义的应用异常
 		throw new ApplicationException();
-//		System.out.println("任务完成");
+		// System.out.println("任务完成");
 	}
     
 }
@@ -666,7 +666,7 @@ public Object invoke(Object proxy, Method method, Object[] args) throws Throwabl
 
 `RelectiveMethodInvocation` 就是 Spring AOP 中 Joinpoint 的一个实现，其类图如下：
 
-![Joinpoint类图](F:\博客\2020-05-06-AOP\Joinpoint类图.png)
+![Joinpoint类图](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/chaycao%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/2020/2020-05-08-Spring%E6%BA%90%E7%A0%81%E2%80%94AOP%E6%A6%82%E5%BF%B5%E7%9A%84%E5%AE%9E%E7%8E%B0/Joinpoint%E7%B1%BB%E5%9B%BE.png)
 
 首先看下 `RelectiveMethodInvocation` 的构造函数：
 
