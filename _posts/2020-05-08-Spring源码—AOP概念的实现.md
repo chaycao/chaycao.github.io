@@ -9,7 +9,7 @@ catalog: true
 tags:  Spring
 ---
 
-Spring 作为 Java 中最流行的框架，主要归功于其提供的 IOC 和 AOP 功能。本文将讨论 Spring AOP 的实现。第一节将介绍 AOP 的相关概念，第二节中介绍 Spring 是如何实现 AOP 的概念。
+Spring 作为 Java 中最流行的框架，主要归功于其提供的 IOC 和 AOP 功能。本文将讨论 Spring AOP 的实现。第一节将介绍 AOP 的相关概念，若熟悉可跳过，第二节中结合源码介绍 Spring 是如何实现 AOP 的各概念。
 
 ## 1. AOP 概念
 
@@ -83,7 +83,7 @@ Jointpoint 的表述方式。
 
 ## 2. Spring 中的实现
 
-前文提到 AOP 的 Joinpoint 有多种类型，方法调用、方法执行、字段设置、字段获取等。而在 Spring AOP 中，仅支持**方法执行**类型的 Joinpoint，但这样一件能满足 80% 的开发需要，如果有特殊需求，可求助其他 AOP 产品，如 AspectJ。由于 Joinpoint 涉及运行时的过程，相当于组装好所有部件让 AOP 跑起来的最后一步。所以将介绍完其他概念实现后，最后介绍 Joinpoint 的实现。
+前文提到 AOP 的 Joinpoint 有多种类型，方法调用、方法执行、字段设置、字段获取等。而在 Spring AOP 中，仅支持**方法执行**类型的 Joinpoint，但这样已经能满足 80% 的开发需要，如果有特殊需求，可求助其他 AOP 产品，如 AspectJ。由于 Joinpoint 涉及运行时的过程，相当于组装好所有部件让 AOP 跑起来的最后一步。所以将介绍完其他概念实现后，最后介绍 Joinpoint 的实现。
 
 ### 2.1 Pointcut
 
@@ -331,7 +331,7 @@ public class MockTask implements ITask {
 		System.out.println("开始执行任务");
         // 抛出一个自定义的应用异常
 		throw new ApplicationException();
-		// System.out.println("任务完成");
+        // System.out.println("任务完成");
 	}
     
 }
@@ -565,7 +565,7 @@ proxyObject.execute();
 - 如果目标类没有实现接口，默认通过**CGLIB**生成。
 - 也可以**直接设置**`ProxyFactory`生成的方式，即使实现了接口，也能使用CGLIB。
 
-在之前的演示代码中，我们没有使用启动 Spring 容器，也就是没有使用 Spring IOC 功能，而是独立使用了 Spring AOP。那么 Spring AOP 是如何与 Spring IOC 进行整合的？是采用了 Spring 整合最常用的方法 —— **`FactoryBean`**。
+在之前的演示代码中，我们没有启动 Spring 容器，也就是没有使用 Spring IOC 功能，而是独立使用了 Spring AOP。那么 Spring AOP 是如何与 Spring IOC 进行整合的？是采用了 Spring 整合最常用的方法 —— **`FactoryBean`**。
 
 **`ProxyFactoryBean`** 继承了 `ProxyFactory` 的父类 `ProxyCreatorSupport`，具有了创建代理类的能力，同时实现了 `FactoryBean` 接口，当通过 `getObject` 方法获得 Bean 时，将得到代理类。
 
@@ -681,7 +681,7 @@ protected ReflectiveMethodInvocation(
 		this.method = BridgeMethodResolver.findBridgedMethod(method);
 		this.arguments = AopProxyUtils.adaptArgumentsIfNecessary(method, arguments);
 		this.interceptorsAndDynamicMethodMatchers = interceptorsAndDynamicMethodMatchers;
-	}
+}
 ```
 
 做了些相关属性的赋值，然后看向 `proceed` 方法，如何调用目标对象和拦截器。
@@ -730,4 +730,4 @@ public Object invoke(MethodInvocation mi) throws Throwable {
 
 ## 3. 小结
 
-在了解了 Spring AOP 的实现后，笔者对 AOP 的概念更加清晰了。在学习过程中最令笔者感兴趣的是 Joinpoint 的拦截链，一开始不知道是怎么实现的，觉得很神奇 😲 。最后学完了，总结下，好像也很简单，通过拦截器的 `invoke` 方法和`MethodInvocation.proceed` 方法（进入下一个拦截器）的相互调用。回头想下，好像就这么回事。😛
+在了解了 Spring AOP 的实现后，笔者对 AOP 的概念更加清晰了。在学习过程中最令笔者感兴趣的是 Joinpoint 的拦截链，一开始不知道是怎么实现的，觉得很神奇 😲 。最后学完了，总结下，好像也很简单，通过拦截器的 `invoke` 方法和`MethodInvocation.proceed` 方法（进入下一个拦截器）的相互调用。好像就这么回事。😛
