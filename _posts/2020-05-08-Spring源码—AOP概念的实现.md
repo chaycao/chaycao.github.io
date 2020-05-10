@@ -101,7 +101,7 @@ public interface Pointcut {
     MethodMatcher getMethodMatcher();
     
     // TruePoincut的单例对象，默认匹配所有类和方法
-	Pointcut TRUE = TruePointcut.INSTANCE;
+    Pointcut TRUE = TruePointcut.INSTANCE;
 }
 ```
 
@@ -114,11 +114,11 @@ public interface Pointcut {
 ```java
 public interface ClassFilter {
     
-	// 匹配被织入的类，匹配成功返回true，失败返回false
-	boolean matches(Class<?> clazz);
+   // 匹配被织入的类，匹配成功返回true，失败返回false
+   boolean matches(Class<?> clazz);
 
-    // TrueClassFilter的单例对象，默认匹配所有类
-	ClassFilter TRUE = TrueClassFilter.INSTANCE;
+   // TrueClassFilter的单例对象，默认匹配所有类
+   ClassFilter TRUE = TrueClassFilter.INSTANCE;
 }
 ```
 
