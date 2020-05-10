@@ -94,14 +94,14 @@ Spring 用 ```org.springframework.aop.Pointcut``` 接口定义 Pointcut 的顶�
 ```java
 public interface Pointcut {
     
-   // ClassFilter用于匹配被织入的类   
-   ClassFilter getClassFilter();
-
-   // MethodMatcher用于匹配被织入的方法
-   MethodMatcher getMethodMatcher();
-
-   // TruePoincut的单例对象，默认匹配所有类和方法
-   Pointcut TRUE = TruePointcut.INSTANCE;
+    // ClassFilter用于匹配被织入的类   
+    ClassFilter getClassFilter();
+    
+    // MethodMatcher用于匹配被织入的方法
+    MethodMatcher getMethodMatcher();
+    
+    // TruePoincut的单例对象，默认匹配所有类和方法
+	Pointcut TRUE = TruePointcut.INSTANCE;
 }
 ```
 
@@ -171,27 +171,27 @@ public boolean matches(Method method, Class<?> targetClass) {
 ```java
 public class NameMatchMethodPointcut extends StaticMethodMatcherPointcut implements Serializable {
     
-	// 方法名称
-	private List<String> mappedNames = new ArrayList<>();
+    // 方法名称
+    private List<String> mappedNames = new ArrayList<>();
 
-	// 设置方法名称
-	public void setMappedNames(String... mappedNames) {
-		this.mappedNames = new ArrayList<>(Arrays.asList(mappedNames));
-	}
+    // 设置方法名称
+    public void setMappedNames(String... mappedNames) {
+        this.mappedNames = new ArrayList<>(Arrays.asList(mappedNames));
+    }
 
 
-	@Override
-	public boolean matches(Method method, Class<?> targetClass) {
-		for (String mappedName : this.mappedNames) {
+    @Override
+    public boolean matches(Method method, Class<?> targetClass) {
+        for (String mappedName : this.mappedNames) {
             // 根据方法名匹配，isMatch提供“*”通配符支持
-			if (mappedName.equals(method.getName()) || isMatch(method.getName(), mappedName)) {
-				return true;
-			}
-		}
-		return false;
-	}
+            if (mappedName.equals(method.getName()) || isMatch(method.getName(), mappedName)) {
+                return true;
+            }
+        }
+        return false;
+    }
     
-	// ...
+    // ...
 }
 ```
 
@@ -226,10 +226,10 @@ public interface MethodBeforeAdvice extends BeforeAdvice {
 ```java
 public class PrepareResourceBeforeAdvice implements MethodBeforeAdvice {
     
-	@Override
-	public void before(Method method, Object[] args, Object target) throws Throwable {
-		System.out.println("准备资源");
-	}
+   @Override
+   public void before(Method method, Object[] args, Object target) throws Throwable {
+      System.out.println("准备资源");
+   }
     
 }
 ```
@@ -238,8 +238,8 @@ public class PrepareResourceBeforeAdvice implements MethodBeforeAdvice {
 
 ```java
 public interface ITask {
-    
-	void execute();
+
+   void execute();
     
 }
 ```
@@ -281,9 +281,9 @@ public class Main {
 }
 
 /** output:
-准备资源
-开始执行任务
-任务完成
+准备资源  
+开始执行任务  
+任务完成  
 **/
 ```
 
@@ -306,17 +306,17 @@ void afterThrowing([Method, args, target], ThrowableSubclass)
 ```java
 public class ExceptionMonitorThrowsAdvice implements ThrowsAdvice {
     
-	public void afterThrowing(Throwable t) {
-		System.out.println("发生【普通异常】");
-	}
+   public void afterThrowing(Throwable t) {
+      System.out.println("发生【普通异常】");
+   }
 
-	public void afterThrowing(RuntimeException e) {
-		System.out.println("发生【运行时异常】");
-	}
+   public void afterThrowing(RuntimeException e) {
+      System.out.println("发生【运行时异常】");
+   }
 
-	public void afterThrowing(Method m, Object[] args, Object target, ApplicationException e) {
-		System.out.println(target.getClass() + m.getName() + "发生【应用异常】");
-	}
+   public void afterThrowing(Method m, Object[] args, Object target, ApplicationException e) {
+      System.out.println(target.getClass() + m.getName() + "发生【应用异常】");
+   }
     
 }
 ```
@@ -326,13 +326,13 @@ public class ExceptionMonitorThrowsAdvice implements ThrowsAdvice {
 ```java
 public class MockTask implements ITask {
     
-	@Override
-	public void execute() {
-		System.out.println("开始执行任务");
-        // 抛出一个自定义的应用异常
-		throw new ApplicationException();
-        // System.out.println("任务完成");
-	}
+   @Override
+   public void execute() {
+      System.out.println("开始执行任务");
+      // 抛出一个自定义的应用异常
+      throw new ApplicationException();
+      // System.out.println("任务完成");
+   }
     
 }
 ```
@@ -342,18 +342,18 @@ public class MockTask implements ITask {
 ```java
 public class Main {
     
-	public static void main(String[] args) {
-		MockTask task = new MockTask();
-		ProxyFactory weaver = new ProxyFactory(task);
-		weaver.setInterfaces(new Class[]{ITask.class});
-		NameMatchMethodPointcutAdvisor advisor = new NameMatchMethodPointcutAdvisor();
-		advisor.setMappedName("execute");
-        // 指定异常监控Advice
-		advisor.setAdvice(new ExceptionMonitorThrowsAdvice());
-		weaver.addAdvisor(advisor);
-		ITask proxyObject = (ITask) weaver.getProxy();
-		proxyObject.execute();
-	}
+   public static void main(String[] args) {
+      MockTask task = new MockTask();
+      ProxyFactory weaver = new ProxyFactory(task);
+      weaver.setInterfaces(new Class[]{ITask.class});
+      NameMatchMethodPointcutAdvisor advisor = new NameMatchMethodPointcutAdvisor();
+      advisor.setMappedName("execute");
+      // 指定异常监控Advice
+      advisor.setAdvice(new ExceptionMonitorThrowsAdvice());
+      weaver.addAdvisor(advisor);
+      ITask proxyObject = (ITask) weaver.getProxy();
+      proxyObject.execute();
+   }
     
 }
 
@@ -407,7 +407,7 @@ public class ResourceCleanAfterReturningAdvice implements AfterReturningAdvice {
 ```java
 public interface MethodInterceptor extends Interceptor {
     
-	Object invoke(MethodInvocation invocation) throws Throwable;
+   Object invoke(MethodInvocation invocation) throws Throwable;
     
 }
 ```
@@ -455,10 +455,10 @@ public interface IReinforce {
 ```java
 public class ReinforeImpl implements IReinforce {
 
-	@Override
-	public void fun() {
-		System.out.println("我变强了，能执行fun方法了");
-	}
+   @Override
+   public void fun() {
+      System.out.println("我变强了，能执行fun方法了");
+   }
 
 }
 ```
@@ -627,12 +627,12 @@ proxyObject.execute();
 ```java
 // JdkDynamicAopProxy
 public Object getProxy(@Nullable ClassLoader classLoader) {
-    if (logger.isTraceEnabled()) {
-        logger.trace("Creating JDK dynamic proxy: " + this.advised.getTargetSource());
-    }
-    Class<?>[] proxiedInterfaces = AopProxyUtils.completeProxiedInterfaces(this.advised, true);
-    findDefinedEqualsAndHashCodeMethods(proxiedInterfaces);
-    return Proxy.newProxyInstance(classLoader, proxiedInterfaces, this);
+   if (logger.isTraceEnabled()) {
+      logger.trace("Creating JDK dynamic proxy: " + this.advised.getTargetSource());
+   }
+   Class<?>[] proxiedInterfaces = AopProxyUtils.completeProxiedInterfaces(this.advised, true);
+   findDefinedEqualsAndHashCodeMethods(proxiedInterfaces);
+   return Proxy.newProxyInstance(classLoader, proxiedInterfaces, this);
 }
 ```
 
@@ -641,22 +641,22 @@ public Object getProxy(@Nullable ClassLoader classLoader) {
 ```java
 // JdkDynamicAopProxy
 public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-    // 通过advised（创建对象时初始化）获得指定的advice
-    // 会将advice用相应的MethodInterceptor封装下
-    List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
+   // 通过advised（创建对象时初始化）获得指定的advice
+   // 会将advice用相应的MethodInterceptor封装下
+   List<Object> chain = this.advised.getInterceptorsAndDynamicInterceptionAdvice(method, targetClass);
 
-    if (chain.isEmpty()) {
-        Object[] argsToUse = AopProxyUtils.adaptArgumentsIfNecessary(method, args);
-        retVal = AopUtils.invokeJoinpointUsingReflection(target, method, argsToUse);
-    }
-    else {
-        // 创建一个MethodInvocation
-        MethodInvocation invocation =
+   if (chain.isEmpty()) {
+      Object[] argsToUse = AopProxyUtils.adaptArgumentsIfNecessary(method, args);
+      retVal = AopUtils.invokeJoinpointUsingReflection(target, method, argsToUse);
+   }
+   else {
+      // 创建一个MethodInvocation
+      MethodInvocation invocation =
             new ReflectiveMethodInvocation(proxy, target, method, args, targetClass, chain);
-        // 调用procced，开始进入拦截链(执行目标对象方法和MethodInterceptor的advice)
-        retVal = invocation.proceed();
+      // 调用procced，开始进入拦截链(执行目标对象方法和MethodInterceptor的advice)
+      retVal = invocation.proceed();
     }
-    return retVal;
+   return retVal;
 }
 ```
 
@@ -674,13 +674,12 @@ public Object invoke(Object proxy, Method method, Object[] args) throws Throwabl
 protected ReflectiveMethodInvocation(
 			Object proxy, @Nullable Object target, Method method, @Nullable Object[] arguments,
 			@Nullable Class<?> targetClass, List<Object> interceptorsAndDynamicMethodMatchers) {
-
-		this.proxy = proxy;
-		this.target = target;
-		this.targetClass = targetClass;
-		this.method = BridgeMethodResolver.findBridgedMethod(method);
-		this.arguments = AopProxyUtils.adaptArgumentsIfNecessary(method, arguments);
-		this.interceptorsAndDynamicMethodMatchers = interceptorsAndDynamicMethodMatchers;
+      this.proxy = proxy;
+      this.target = target;
+      this.targetClass = targetClass;
+      this.method = BridgeMethodResolver.findBridgedMethod(method);
+      this.arguments = AopProxyUtils.adaptArgumentsIfNecessary(method, arguments);
+      this.interceptorsAndDynamicMethodMatchers = interceptorsAndDynamicMethodMatchers;
 }
 ```
 
@@ -697,7 +696,7 @@ public Object proceed() throws Throwable {
    // currentInterceptorIndex加1
    Object interceptorOrInterceptionAdvice =
          this.interceptorsAndDynamicMethodMatchers.get(++this.currentInterceptorIndex);
-    return ((MethodInterceptor) interceptorOrInterceptionAdvice).invoke(this);
+   return ((MethodInterceptor) interceptorOrInterceptionAdvice).invoke(this);
 }
 ```
 
@@ -708,8 +707,8 @@ public Object proceed() throws Throwable {
 ```java
 // MethodBeforeAdviceInterceptor
 public Object invoke(MethodInvocation mi) throws Throwable {
-    this.advice.before(mi.getMethod(), mi.getArguments(), mi.getThis());
-    return mi.proceed();
+   this.advice.before(mi.getMethod(), mi.getArguments(), mi.getThis());
+   return mi.proceed();
 }
 ```
 
@@ -718,9 +717,9 @@ public Object invoke(MethodInvocation mi) throws Throwable {
 ```java
 // AfterReturningAdviceInterceptor
 public Object invoke(MethodInvocation mi) throws Throwable {
-    Object retVal = mi.proceed();
-    this.advice.afterReturning(retVal, mi.getMethod(), mi.getArguments(), mi.getThis());
-    return retVal;
+   Object retVal = mi.proceed();
+   this.advice.afterReturning(retVal, mi.getMethod(), mi.getArguments(), mi.getThis());
+   return retVal;
 }
 ```
 
