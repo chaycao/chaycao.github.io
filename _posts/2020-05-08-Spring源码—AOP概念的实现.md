@@ -284,7 +284,7 @@ public class Main {
 准备资源  
 开始执行任务  
 任务完成  
-**/
+*/
 ```
 
 可以看出在执行代理对象 `proxyObject` 的 `execute` 方法时，先执行了 `PrepareResourceBeforeAdvice` 中的 `before` 方法。
@@ -360,7 +360,7 @@ public class Main {
 /** output:
 开始执行任务
 class com.chaycao.spring.aop.MockTaskexecute发生【应用异常】
-**/
+*/
 ```
 
 当抛出 `ApplicationException` 时，被相应的 `afterThrowing` 方法捕获到。
@@ -397,7 +397,7 @@ public class ResourceCleanAfterReturningAdvice implements AfterReturningAdvice {
 开始执行任务
 任务完成
 资源清理
-**/
+*/
 ```
 
 **（4）MethodInterceptor**
@@ -491,7 +491,7 @@ public class Main {
 任务完成
 通过使用增强器
 我变强了，能执行fun方法了
-**/
+*/
 ```
 
 代理对象 `proxyObject` 便通过拦截器，可以使用 `ReinforeImpl` 实现类的方法。
@@ -615,7 +615,7 @@ proxyObject.execute();
 开始执行任务     
 任务完成    
 资源清理   
-**/
+*/
 ```
 
 我们知道 `getProxy` 会通过动态代理生成一个 `ITask` 的接口类，那么 `execute` 方法的内部是如何先执行了 `beforeAdvice` 的 `before` 方法，接着执行 `task` 的 `execute` 方法，再执行 `afterAdvice` 的 `after` 方法呢？
