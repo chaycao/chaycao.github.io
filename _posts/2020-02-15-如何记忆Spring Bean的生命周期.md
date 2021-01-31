@@ -1,9 +1,7 @@
 ---
-layout:     post
 title:      如何记忆Spring Bean的生命周期
 date:       2020-02-15
 author:     ChayCao
-header-img: img/post-bg-2015.jpg 
 catalog: true
 tags:  Spring
 ---

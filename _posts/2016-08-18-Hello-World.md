@@ -1,18 +1,15 @@
 ---
-layout:     post               
 title:      Hello World
 date:       2016-08-18 
 author:     ChayCao    
-header-img: img/post-bg-2015.jpg 
 catalog: true 
 tags:  随笔                            
 ---
 
-
 　　今天创建了自己的博客chaycao.github.io，写下这第一篇博文，取其名为**“Hello World”**。
 
 　　“Hello World”，中文译为“你好 世界”。世界上的第一个程序就是Hello World，由Brian Kernighan创作。HelloWorld程序也常用于让新手去接触一种编程语言。
-![第一次编程.jpg](http://upload-images.jianshu.io/upload_images/2489662-092ec1111cf14512.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](https://chaycao-1302020836.cos.ap-shenzhen-fsi.myqcloud.com/blog/img/第一次编程.jpg)
 　　上图是我在2012年大一学习C语言时，仿照着课本编写的第一个程序。从注释上我们可以看到“20121009001”的字样，创建日期为2012年10月9号。九月份刚入学那会笔记本还没买。十一放假后才从家里拿着新笔记本回学校。
 　　那天的一切也都历历在目。下午第二讲的C语言下课后，跃跃欲试地想用VC++6.0编写自己的第一个程序。吃过饭后回到寝室。在7点10分左右，成功安装好了VC++6.0，接着对照着书本敲。在调试过程中出现了各种语法错误，例如变量S的大小写问题。花了半个小时，到7点40分，才编译通过。
 　　当时的那种成功喜悦感已经记不太清，只记得自己为了纪念自己编写的第一个程序，很激动地用QQ截下这张图，另存为"第一次编程.jpg"。

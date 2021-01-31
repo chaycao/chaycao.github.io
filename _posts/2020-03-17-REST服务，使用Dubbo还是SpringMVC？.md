@@ -1,16 +1,10 @@
 ---
-layout:     post
 title:      REST服务，使用Dubbo还是SpringMVC？
 date:       2020-03-17
 author:     ChayCao
-header-img: img/post-bg-2015.jpg 
 catalog: true
 tags:  随笔
 ---
-
-
-
-
 
 SpringMVC、Dubbo 都支持 REST 服务，那当我们要开发一个 REST 服务接口时，该如何选择？
 本文将包括以下两方面内容：

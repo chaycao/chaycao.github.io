@@ -1,9 +1,7 @@
----
-layout:     post               
+---         
 title:      Scrapy+Selenium+Phantomjs的Demo
 date:       2016-08-27       
 author:     ChayCao    
-header-img: img/post-bg-2015.jpg 
 catalog: true 
 tags:  Python                            
 ---

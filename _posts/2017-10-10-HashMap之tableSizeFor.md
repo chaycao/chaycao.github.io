@@ -1,9 +1,7 @@
----
-layout:     post               
+---             
 title:      HashMap之tableSizeFor
 date:       2017-10-10       
 author:     ChayCao    
-header-img: img/post-bg-2015.jpg 
 catalog: true 
 tags:  Java                           
 ---

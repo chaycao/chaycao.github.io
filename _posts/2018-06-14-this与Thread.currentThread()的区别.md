@@ -1,9 +1,7 @@
 ---
-layout:     post
 title:      this与Thread.currentThread()的区别
 date:       2018-06-14
 author:     ChayCao
-header-img: img/post-bg-2015.jpg 
 catalog: true
 tags:  Java          
 ---

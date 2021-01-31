@@ -1,13 +1,10 @@
 ---
-layout:     post
 title:      ZooKeeper的作用、应用场景和替代品
 date:       2020-03-08
 author:     ChayCao
-header-img: img/post-bg-2015.jpg 
 catalog: true
 tags:  ZooKeeper
 ---
-
 
 ZooKeeper 我想大家应该都略有耳闻，可能你在开发中没有直接使用过，但常用的 Hadoop、HBase、Kafka、Dubbo 等都有使用到 ZooKeeper。那 ZooKeeper 到底起到了什么样的作用，为什么这些框架、系统需要使用 ZooKeeper呢，我们在开发过程中应该如何使用 ZooKeeper，又是否有 ZooKeeper的替代品呢。本文将围绕以上问题，从以下三方面说起：
 

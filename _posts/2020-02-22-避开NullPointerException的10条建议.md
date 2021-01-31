@@ -1,13 +1,10 @@
 ---
-layout:     post
 title:      避开NullPointerException的10条建议
 date:       2020-02-22
 author:     ChayCao
-header-img: img/post-bg-2015.jpg 
 catalog: true
 tags:  Java
 ---
-
 
 ## 1. 引言
 

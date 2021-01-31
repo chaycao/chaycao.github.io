@@ -1,10 +1,7 @@
 ---
-
-layout:     post
 title:      Spring源码—AOP概念的实现
 date:       2020-05-08
 author:     ChayCao
-header-img: img/post-bg-2015.jpg 
 catalog: true
 tags:  Spring
 ---

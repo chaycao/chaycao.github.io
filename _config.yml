@@ -1,108 +1,226 @@
-# Site settings
-title: ChayCao Blog
-SEOTitle: 草捏子的博客 | ChayCao Blog
-header-img: img/post-bg-desk.jpg
-email: caoniezi@gmail.com
-description: "Every failure is leading towards success."
-keyword: "ChayCao, ChayCao Blog, 草捏子, 草捏子的博客, Java, java"
-url: "http://chaycao.github.io"          # your host, for absolute URL
-baseurl: ""      # for example, '/blog' if your blog hosted on 'host/blog'
-github_repo: "https://github.com/chaycao/chaycao.github.io.git" # you code repository
-
-# Sidebar settings
-sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "Goals determine what you going to be!"
-sidebar-avatar: /img/avatar_cy.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
-
-
-
-# SNS settings
-RSS: false
-# weibo_username:     qiubaiying
-# zhihu_username:     qiubaiying
-github_username:    chaycao
-# facebook_username:  baiying.qiu.7
-# jianshu_username:   e71990ada2fd
-# twitter_username:   qiubaiying
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+#
+# ,--------.      ,--.   ,--. ,--.
+# '--.  .--',---.  \  `.'  /,-'  '-.
+#    |  |  | .-. :  .'    \ '-.  .-'
+#    |  |  \   --. /  .'.  \  |  |
+#    `--'   `----''--'   '--' `--'
 
 
 
 
-# Build settings
-# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
-permalink: pretty
-paginate: 10
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
-anchorjs: true                          # if you want to customize anchor. check out line:181 of `post.html`
+## => Site Settings
+##############################
+text_skin: default # "default" (default), "dark", "forest", "ocean", "chocolate", "orange"
+highlight_theme: default # "default" (default), "tomorrow", "tomorrow-night", "tomorrow-night-eighties", "tomorrow-night-blue", "tomorrow-night-bright"
+url     : # the base hostname & protocol for your site e.g. https://www.someone.com
+baseurl : # does not include hostname
+title   : 草捏子
+description: > # this means to ignore newlines until "Language & timezone"
+  专注后端技术，坚持原创，欢迎关注公众号“草捏子”
 
 
-
-# Gems
-# from PR#40, to support local preview for Jekyll 3.0
-gems: [jekyll-paginate]
-
-
+## => Language and Timezone
+##############################
+lang: zh-Hans # the language of your site, default as "en"
+timezone: # see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones for the available values
 
 
-# Markdown settings
-# replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
-markdown: kramdown
-highlighter: rouge
-kramdown:
-  input: GFM                            # use Github Flavored Markdown !important
+## => Author and Social
+##############################
+author:
+  type      : # "person" (default), "organization"
+  name      : 草捏子
+  url       :
+  avatar    : # path or url of avatar image (square)
+  bio       : 专注后端技术，坚持原创，欢迎关注公众号“草捏子”
+  email     : chaycao@163.com
+  facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
+  twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
+  weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
+  googleplus: # "user_id"   the last part of your profile url, e.g. https://plus.google.com/u/0/user_id
+  telegram  : # "user_name" the last part of your profile url, e.g. https://t.me/user_name
+  medium    : # "user_name" the last part of your profile url, e.g. https://medium.com/user_name
+  zhihu     : # "user_name" the last part of your profile url, e.g. https://www.zhihu.com/people/user_name
+  douban    : # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name
+  linkedin  : # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name
+  github    : chaycao# "user_name" the last part of your profile url, e.g. https://github.com/user_name
+  npm       : # "user_name" the last part of your profile url, e.g. https://www.npmjs.com/~user_name
 
 
-
-# 评论系统
-# Disqus（https://disqus.com/）
-# disqus_username: qiubaiying
-
-# Gitalk
-gitalk:
-  enable: true    #是否开启Gitalk评论
-  clientID: fbeeb10c180b47dc0ae5                            #生成的clientID
-  clientSecret: ebf7fa24d27cd912f81c422f718c8a44b8cd5b14    #生成的clientSecret
-  repo: chaycao.github.io    #仓库名称
-  owner: chaycao    #github用户名
-  admin: chaycao
-  distractionFreeMode: false #是否启用类似FB的阴影遮罩
+## => GitHub Repository (if the site is hosted by GitHub)
+##############################
+repository: chaycao/chaycao.github.io
+repository_tree: master
 
 
-# 统计
-
-# Analytics settings
-# Baidu Analytics
-ba_track_id: 304fff51ff76bd065a48eb78e6349c2d
-
-# Google Analytics
-ga_track_id: UA-164659084-1            # Format: UA-xxxxxx-xx
-ga_domain: auto               # 默认的是 auto, 这里我是自定义了的域名，你如果没有自己的域名，需要改成auto
+## => Paths
+##############################
+paths:
+  root    : # title link url, "/" (default)
+  home    : # home layout url, "/" (default)
+  archive : # "/archive.html" (default)
+  rss     : # "/feed.xml" (default)
 
 
+## => Post
+##############################
+## excerpt
+excerpt_separator: <!--more-->
+
+## license
+license: CC-BY-NC-4.0 # "CC-BY-4.0", "CC-BY-SA-4.0", "CC-BY-NC-4.0", "CC-BY-ND-4.0"
+
+## TOC
+toc:
+  selectors: # "h1,h2,h3" (default)
 
 
+## => Markdown Enhancements
+##############################
+## Mathjax
+mathjax: # false (default), true
+mathjax_autoNumber: # false (default), true
 
-# Featured Tags
-featured-tags: true                     # 是否使用首页标签
-featured-condition-size: 1              # 相同标签数量大于这个数，才会出现在首页
+## Mermaid
+mermaid: # false (default), true
+
+## Chart
+chart: # false (default), true
 
 
+## => Paginate
+##############################
+paginate: 8
+paginate_path: /page:num # don't change this unless for special need
 
-# Progressive Web Apps
-chrome-tab-theme-color: "#000000"
-service-worker: true
+
+## => Sources
+##############################
+sources: # bootcdn (default), unpkg
 
 
+## => Sharing
+##############################
+sharing:
+  provider: false # false (default), "addtoany", "addthis", "custom"
 
-# Friends
-#friends: [
-#    {
-#        title: "Apple",
-#        href: "https://apple.com"
-#    },{
-#        title: "Apple Developer",
-#        href: "https://developer.apple.com/"
-#    }
-#]
+  ## AddThis
+  addthis:
+    id: # AddThis pubid, e.g. ra-5xxxxxxxxxxx
+
+
+## => Comments
+##############################
+comments:
+  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
+
+  ## Disqus
+  disqus:
+    shortname: # the Disqus shortname for the site
+
+  ## Gitalk
+  # please refer to https://github.com/gitalk/gitalk for more info.
+  gitalk:
+    clientID    : fbeeb10c180b47dc0ae5 # GitHub Application Client ID
+    clientSecret: ebf7fa24d27cd912f81c422f718c8a44b8cd5b14 # GitHub Application Client Secret
+    repository  : chaycao.github.io # GitHub repo
+    owner       : chaycao # GitHub repo owner
+    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+      # - your GitHub Id
+      - chaycao
+
+  ## Valine
+  # please refer to https://valine.js.org/en/ for more info.
+  valine:
+    app_id      : # LeanCloud App id
+    app_key     : # LeanCloud App key
+    placeholder : # Prompt information
+    visitor     : # false (default)
+    meta        : # "[nick, mail, link]" (default) nickname, E-mail, Personal-site
+
+
+## => Pageview
+##############################
+pageview:
+  provider: false # false (default), "leancloud", "custom"
+
+  ## Leancloud
+  leancloud:
+    app_id    : # LeanCloud App id
+    app_key   : # LeanCloud App key
+    app_class : # LeanCloud App class
+
+
+## => Search
+##############################
+search:
+  provider: default # "default" (default), false, "google", "custom"
+
+  ## Google Custom Search Engine
+  google:
+    custom_search_engine_id: # Google Custom Search Engine ID
+
+
+## => Analytics
+##############################
+analytics:
+  provider: false # false (default), "google", "custom"
+
+  ## Google Analytics
+  google:
+    tracking_id : # Google Analytics id for the site
+    anonymize_ip: false # Anonymize IP tracking for Analytics
+
+
+## => Build
+##############################
+markdown    : kramdown
+highlighter : rouge
+permalink   : date
+
+exclude:
+  - CHANGELOG.md
+  - HOW_TO_RELEASE.md
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README-*.md
+  - README.md
+  - gulpfile.js
+  - jekyll-text-theme.gemspec
+  - package-lock.json
+  - package.json
+  - /docs
+  - /node_modules
+  - /screenshots
+  - /test
+  - /vendor
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: article
+      sharing: true
+      license: true
+      aside:
+        toc: true
+      show_edit_on_github: true
+      show_subscribe: true
+      pageview: true
+
+
+## => Plugins
+##############################
+plugins:
+  - jekyll-feed
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jemoji

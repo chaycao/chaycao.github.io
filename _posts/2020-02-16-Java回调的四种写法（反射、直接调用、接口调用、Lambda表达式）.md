@@ -1,9 +1,7 @@
 ---
-layout:     post
 title:      Java回调的四种写法（反射、直接调用、接口调用、Lambda表达式）
 date:       2020-02-16
 author:     ChayCao
-header-img: img/post-bg-2015.jpg 
 catalog: true
 tags:  Java
 ---
