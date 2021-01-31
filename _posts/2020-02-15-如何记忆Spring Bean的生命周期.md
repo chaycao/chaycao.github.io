@@ -1,6 +1,7 @@
 ---
 title:      如何记忆Spring Bean的生命周期
 date:       2020-02-15
+key: 20200215
 author:     ChayCao
 catalog: true
 tags:  Spring

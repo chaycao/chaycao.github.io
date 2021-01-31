@@ -1,6 +1,7 @@
 ---
 title:      Hello World
 date:       2016-08-18 
+key: 20160818
 author:     ChayCao    
 catalog: true 
 tags:  随笔                            

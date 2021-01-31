@@ -1,6 +1,7 @@
 ---
 title:     HashMap与HashTable的源码比较
 date:       2017-10-10
+key: 2017101002
 author:     ChayCao
 catalog: true
 tags:  Java

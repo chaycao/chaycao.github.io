@@ -1,6 +1,7 @@
 ---
 title:      MapReduce论文阅读记录
 date:       2018-01-30
+key: 20180130
 author:     ChayCao
 catalog: true
 tags:  MapReduce

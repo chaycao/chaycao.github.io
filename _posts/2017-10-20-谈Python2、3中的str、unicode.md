@@ -1,6 +1,7 @@
 ---
 title:     谈Python2、3中的str、unicode
 date:       2017-10-20
+key: 20171020
 author:     ChayCao
 catalog: true
 tags:  Python                     

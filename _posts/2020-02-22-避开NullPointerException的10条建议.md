@@ -1,6 +1,7 @@
 ---
 title:      避开NullPointerException的10条建议
 date:       2020-02-22
+key: 20200222
 author:     ChayCao
 catalog: true
 tags:  Java

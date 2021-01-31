@@ -1,6 +1,7 @@
 ---
 title:      ZooKeeper的作用、应用场景和替代品
 date:       2020-03-08
+key: 20200308
 author:     ChayCao
 catalog: true
 tags:  ZooKeeper

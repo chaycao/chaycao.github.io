@@ -1,6 +1,7 @@
 ---             
 title:      HashMap之tableSizeFor
-date:       2017-10-10       
+date:       2017-10-10    
+key: 2017101001   
 author:     ChayCao    
 catalog: true 
 tags:  Java                           
